@@ -9,12 +9,13 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     let quantityOfMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12;
     quantityOfMonths -= startDate.getMonth();
     quantityOfMonths += endDate.getMonth();
-    let totalAmount = bodyCredit * (numPercent + (numPercent)/(((1 + numPercent) ** quantityOfMonths.toFixed()) - 1));
+    let monthAmount = bodyCredit * (numPercent + numPercent /(((1 + numPercent) ** quantityOfMonths.toFixed()) - 1));
+    let totalAmount = monthAmount * quantityOfMonths;
     console.log(numPercent);
     console.log(bodyCredit);
-    console.log(quantityOfMonths.toFixed());
-    console.log(totalAmount);
-    return(totalAmount);
+    console.log(quantityOfMonths);
+    console.log(monthAmount);
+    return(Number(totalAmount.toFixed(2)));
 }
 
 function getGreeting(name) {

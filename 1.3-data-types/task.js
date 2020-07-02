@@ -1,6 +1,20 @@
+'use strict';
 function calculateTotalMortgage(percent, contribution, amount, date) {
-    // код для задачи №1 писать здесь
-    // return totalAmount;
+    let numPercent = Number(percent)/1200;
+    let numContribution = Number(contribution);
+    let numAmount = Number(amount)
+    const startDate = new Date();
+    const endDate = new Date(date);
+    let bodyCredit = numAmount - numContribution;
+    let quantityOfMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12;
+    quantityOfMonths -= startDate.getMonth();
+    quantityOfMonths += endDate.getMonth();
+    let totalAmount = bodyCredit * (numPercent + (numPercent)/(((1 + numPercent) ** quantityOfMonths.toFixed()) - 1));
+    console.log(numPercent);
+    console.log(bodyCredit);
+    console.log(quantityOfMonths.toFixed());
+    console.log(totalAmount);
+    return(totalAmount);
 }
 
 function getGreeting(name) {

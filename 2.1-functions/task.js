@@ -21,76 +21,46 @@ function getSolutions(a, b, c) {
 
 function showSolutionsMessage(a, b, c) {
     let result = getSolutions(a, b, c);
-    let numberX = Number('x');
-    console.log('Вычисляем корни квадратного уравнения ' + a + numberX * numberX + ' ' + b + numberX + ' ' + c);
+    let x = 'x';
+    let numberX = Number(x);
+    const numX1 = Number(result.roots[0]);
+    const numX2 = Number(result.roots[1]);
+    console.log('Вычисляем корни квадратного уравнения ' + a + 'x +' + ' ' + b + 'x^2 +' + ' ' + c);
     console.log(`Значение дискриминанта: ${result.D}`);
     if (result.D < 0) {
        return('Уравнение не имеет вещественных корней');
     } else if (result.D == 0) {
-        return(`Уравнение имеет один корень X1 = ${result.x1}`);
+        return(`Уравнение имеет один корень X1 = ${numX1}`);
     } else {
-        return(`Уравнение имеет два корня. X1 =  ${result.x1}, X2 = ${result.x2}`);
+        return(`Уравнение имеет два корня. X1 =  ${numX1}, X2 = ${numX2}`);
     }
 }
 
-  function getAverageScore(data) {
-    let data = {
-       algebra: [],
-        average: [],
-        chemistry: [],
-        english: [],
-        french: [],
-        geometry: [],
-        music: [],
-        physics: [],
-        poetry: [],
-        russian: [],
-    }
-    
-    for (let i = 0; i < data.length; i++) {
 
+let data = {
+    algebra: [],
+     average: [],
+     chemistry: [],
+     english: [],
+     french: [],
+     geometry: [],
+     music: [],
+     physics: [],
+     poetry: [],
+     russian: [],
+ }
+
+
+  function getAverageScore(data) {
+    for (let i in data) {
+        let item = getAverageMark(data[i]);
     }
 }
 
 function getAverageMark(marks) { 
-    for (let i = 0; i < data[i].length; i++) {
-        data[1][i] += data[1][i]/data[i].length;
-        console.log(data[i]);
-    }
-    for (let i = 0; i < data[i].length; i++) {
-        data[3][i] += data[3][i]/data[i].length;
-        console.log(data[i]);
-    }
-    for (let i = 0; i < data[i].length; i++) {
-        data[4][i] += data[4][i]/data[i].length;
-        console.log(data[i]);
-    }
-    for (let i = 0; i < data[i].length; i++) {
-        data[5][i] += data[5][i]/data[i].length;
-        console.log(data[i]);
-    }
-    for (let i = 0; i < data[i].length; i++) {
-        data[6][i] += data[6][i]/data[i].length;
-        console.log(data[i]);
-    }
-    for (let i = 0; i < data[i].length; i++) {
-        data[7][i] += data[7][i]/data[i].length;
-        console.log(data[i]);
-    }
-    for (let i = 0; i < data[i].length; i++) {
-        data[8][i] += data[8][i]/data[i].length;
-        console.log(data[i]);
-    }
-    for (let i = 0; i < data[i].length; i++) {
-        data[9][i] += data[9][i]/data[i].length;
-        console.log(data[i]);
-    }
-    for (let i = 0; i < data[i].length; i++) {
-        data[10][i] += data[10][i]/data[i].length;
-        console.log(data[i]);
-    }
-    for (let i = 0; i < data[i].length; i++) {
-        data[2] += data[i]/data[i].length;
+    for (let i = 0; i < marks[i].length; i++) {
+        data[i] += data[i]/data[i].length;
+        marks += data[i];
         console.log(data[i]);
     }
     return data;

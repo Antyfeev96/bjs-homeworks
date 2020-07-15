@@ -70,8 +70,13 @@ let data = {
     let result = {
 
     }
+    if (data = 0) {
+       data.average = 0; 
+       return data.average; 
+    } else {
     for (const subject in data) {
         result[subject] = getAverageMark(subject);
     }
     return result;
+} 
 }

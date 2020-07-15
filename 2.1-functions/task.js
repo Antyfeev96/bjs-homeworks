@@ -38,30 +38,40 @@ function showSolutionsMessage(a, b, c) {
 
 
 let data = {
-    algebra: [],
-     average: [],
-     chemistry: [],
-     english: [],
-     french: [],
-     geometry: [],
-     music: [],
-     physics: [],
-     poetry: [],
-     russian: [],
+    algebra: [2,4,5,2,3,4],
+    chemistry: [2],
+    english: [4,4,3],
+    french: [4,4],
+    geometry: [2,4,5],
+    music: [2,2,6],
+    physics: [5,5],
+    poetry: [5,3,4],
+    russian: [3,3,4,5],
  }
 
-
   function getAverageScore(data) {
-    for (let i in data) {
-        let item = getAverageMark(data[i]);
+    function getAverageMark(marks) {
+        let sum = 0;
+        for (let i = 0; i < marks.length; i++) {
+            sum += marks[i];
+        }
+        return sum/marks.length;
     }
-}
+    
+    let sumAverage = {
+      average: []
+    }
+    for (let k = 0; k < data.length; k++) {
+        sumAverage.average += data[k];
+    }
+    data.average = sumAverage.average;
+    console.log(sumAverage.average);
 
-function getAverageMark(marks) { 
-    for (let i = 0; i < marks[i].length; i++) {
-        data[i] += data[i]/data[i].length;
-        marks += data[i];
-        console.log(data[i]);
+    let result = {
+
     }
-    return data;
+    for (const subject in data) {
+        result[subject] = getAverageMark(subject);
+    }
+    return result;
 }

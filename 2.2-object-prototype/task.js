@@ -1,27 +1,54 @@
 //String.prototype.isPalindrome - для задачи №1
 
-String.prototype = isPalindrome;
-
- function isPalindrome(checkedString) {
+String.prototype.isPalindrome = function() {
+    const checkedString = this;
     let stringLen = checkedString.length;
     let finalStr = checkedString.toLowerCase();
+    let result;
     for (let i = 0; i < stringLen / 2; i++) {
         if (finalStr.charAt(i) === finalStr.charAt(stringLen - i - 1)) {
-            return true;
+            result = true;
         } else {
-            return false;
+            result = false;
         }
-
     }
+    return result;
 }
 
 
 function getAverageMark(marks) {
-    // код для задачи №2 писать здесь
-    // return averageMark
+    let average = 0;
+    if (marks.length === 0) {
+        return 0;
+    } else {
+    for (i in marks) {
+      average += marks[i];
+    }
+    let roundedAverage = average/marks.length;
+    return Math.round(roundedAverage);
+}
 }
 
 function checkBirthday(birthday) {
-    // код для задачи №3 писать здесь
-    // return verdict
+    let now = new Date();
+    let nowSeconds = now.getTime()
+    let user = new Date(birthday);
+    let userSeconds = user.getTime();
+    const diff = nowSeconds - userSeconds;
+    let averageFourYearSeconds = (31536000000 * 3 + 31622400000) / 4;
+    const age = diff / averageFourYearSeconds;
+    console.log(now);
+    console.log(nowSeconds);
+    console.log(user);
+    console.log(userSeconds);
+    console.log(diff);
+    console.log(averageFourYearSeconds);
+    console.log(age);
+    let result;
+    if (age >= 18) {
+        result = true; 
+    } else {
+        result = false;
+    }
+    return result;
 }

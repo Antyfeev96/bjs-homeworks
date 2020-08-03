@@ -18,7 +18,7 @@ class PrintEditionItem {
 
          
 
-        set giveMeState(state) {
+        set state(state) {
             if (state < 0) {
                 this._state = 0;
             } else if (state > 100) {
@@ -28,7 +28,7 @@ class PrintEditionItem {
             }
         }
 
-        get giveMeState() {
+        get state() {
             return this._state;
         }
 }
@@ -92,16 +92,22 @@ class Library {
     }
 
     findBookBy(type, value) {
-        if (type === "type" && value === this.addBook.type) {
-            return book.name;
-        } else if (type === "author" && value === this.addBook.author) {
-            return book.name;
-        } else if (type === "name" && value === this.addBook.name) {
-            return book.name;
-        } else if (type === "releaseDate" && value === this.addBook.releaseDate) {
-            return book.name;
-        } else if (type === "pagesCount" && value === this.addBook.pagesCount) {
-            return book.name;
+        for (let i in this.books) {
+            if (this.books[i][type] === value) {
+            return this.books[i];
+            } else {
+                return null;
+            }
+        }
+    }
+
+    giveBookByName(bookName) {
+        for (let i in this.books) {
+            if (this.books[i].name === bookName) {
+                this.books.splice(i, 1);
+            } else {
+                return null;
+            }
         }
     }
     
@@ -111,3 +117,40 @@ library.addBook(new DetectiveBook("Артур Конан Дойл", "Полно�
 library.addBook(new FantasticBook("Аркадий и Борис Стругацкие", "Пикник на обочине", 1972, 168));
 library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
 library.addBook(new Magazine("Мурзилка", 1924, 60));
+
+//Задание №3
+
+class StudentLog {
+    constructor(name) {
+        this.name = name;
+    }
+
+        getName () {
+            return this.name;
+        }
+
+        addGrade(grade, subject) {
+            let arrGrade = [];
+            if (0 < grade <= 5) {
+               let subjectGrade = {
+                 grade: grade,
+                 subject: subject
+               }
+            arrGrade.push(subjectGrade);
+            return arrGrade.length;
+            } else {
+                return (`Вы пытались поставить оценку ${grade}! по предмету ${subject}. Допускаются только числа от 1 до 5.`)
+            }
+
+        }
+
+        getAverageBySubject(subject) {
+            
+        }
+
+    
+}
+
+
+const log = new StudentLog('Олег Никифоров');
+console.log(log.getName())

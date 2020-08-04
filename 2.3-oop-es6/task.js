@@ -92,7 +92,8 @@ class Library {
     }
 
     findBookBy(type, value) {
-        for (let i in this.books) {
+        for (let i = 0; i < this.books.length; i++) {
+            console.log(i);
             if (this.books[i][type] === value) {
             return this.books[i];
             } else {
@@ -102,13 +103,12 @@ class Library {
     }
 
     giveBookByName(bookName) {
-        for (let i in this.books) {
+        for (let i = 0; i < this.books.length; i ++) {
             if (this.books[i].name === bookName) {
-                this.books.splice(i, 1);
-            } else {
-                return null;
+                return this.books.splice(i, 1)[0];
             }
         }
+        return null;
     }
     
 }
@@ -131,7 +131,7 @@ class StudentLog {
 
         addGrade(grade, subject) {
             let arrGrade = [];
-            if (0 < grade <= 5) {
+            if (grade > 0 || grade <=5 ) {
                let subjectGrade = {
                  grade: grade,
                  subject: subject
@@ -141,11 +141,9 @@ class StudentLog {
             } else {
                 return (`Вы пытались поставить оценку ${grade}! по предмету ${subject}. Допускаются только числа от 1 до 5.`)
             }
-
         }
 
         getAverageBySubject(subject) {
-            
         }
 
     
@@ -153,4 +151,3 @@ class StudentLog {
 
 
 const log = new StudentLog('Олег Никифоров');
-console.log(log.getName())

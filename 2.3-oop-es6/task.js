@@ -93,13 +93,11 @@ class Library {
 
     findBookBy(type, value) {
         for (let i = 0; i < this.books.length; i++) {
-            console.log(i);
             if (this.books[i][type] === value) {
             return this.books[i];
-            } else {
-                return null;
-            }
+            } 
         }
+        return null;
     }
 
     giveBookByName(bookName) {
@@ -123,6 +121,8 @@ library.addBook(new Magazine("Мурзилка", 1924, 60));
 class StudentLog {
     constructor(name) {
         this.name = name;
+        this.marks = [];
+        this.averageSubject = [];
     }
 
         getName () {
@@ -130,24 +130,54 @@ class StudentLog {
         }
 
         addGrade(grade, subject) {
-            let arrGrade = [];
-            if (grade > 0 || grade <=5 ) {
-               let subjectGrade = {
-                 grade: grade,
-                 subject: subject
-               }
-            arrGrade.push(subjectGrade);
-            return arrGrade.length;
-            } else {
-                return (`Вы пытались поставить оценку ${grade}! по предмету ${subject}. Допускаются только числа от 1 до 5.`)
+            for (let i = 0; i < this.marks.length; i++) {
+                if (this.marks[i] === subject || grade > 0 || grade <= 5) {
+                    this.marks.push(subject);
+                    this.marks.subject.push(grade);
+                }
+                  else if (grade > 0 || grade <=5) {
+                      this.marks[i] = subject;
+                      this.marks[i].push(grade);
+                  }
+                }
             }
-        }
 
         getAverageBySubject(subject) {
+            let sum = 0;
+
+            for (let i = 0; i < this.marks.subject.length; i++) {
+                if (this.marks[i] === subject) {
+                sum += this.marks.subject[i];
+                } else {
+                    return 0;
+                }
+            }
+
+            average = sum / this.marks.subject.length;
+            this.averageSubject.push(average);
         }
 
-    
+        getTotalAverage() {
+            if (this.averageSubject.length === 0) {
+                return 0;
+            } else {
+            for (let i = 0; i < this.averageSubject.length; i++) {
+                finalSum += this.averageSubject[i];
+            }
+            let finalAverage = finalSum / this.averageSubject.length;
+            return finalAverage;
+        }
+        }
 }
 
 
 const log = new StudentLog('Олег Никифоров');
+
+log.addGrade(2, 'algebra');
+log.addGrade(4, 'algebra');
+log.addGrade(5, 'geometry');
+log.addGrade(4, 'geometry');
+
+console.log(log.getAverageBySubject('geometry')); // 4.5
+console.log(log.getAverageBySubject('algebra')); // 3
+console.log(log.getAverageBySubject('math')); // 0

@@ -145,16 +145,16 @@ class StudentLog {
         getAverageBySubject(subject) {
             let sum = 0;
 
-                if (this.marks.hasOwnProperty(subject)) {
-                    for (let i = 0; i < this.marks.subject.length; i++) {
-                       sum += this.marks.subject[i];
+                if (this.marks[subject]) {
+                    for (let i = 0; i < this.marks[subject].length; i++) {
+                       sum += this.marks[subject][i].length;
                     }
                 } else {
                     return 0;
                 }
             
 
-            let average = sum / this.marks.subject.length;
+            let average = sum / this.marks[subject].length;
             return average;
         }
     }
@@ -162,11 +162,10 @@ class StudentLog {
 
 const log = new StudentLog('Олег Никифоров');
 
-// log.addGrade(2, 'algebra'); 
-// log.addGrade(4, 'algebra');
-// log.addGrade(5, 'geometry');
-// log.addGrade(4, 'geometry');
+ log.addGrade(2, 'algebra'); 
+ log.addGrade(4, 'algebra');
+ log.addGrade(4, 'geometry');
 
-// console.log(log.getAverageBySubject('geometry')); // 4.5
-// console.log(log.getAverageBySubject('algebra')); // 3
-// console.log(log.getAverageBySubject('math')); // 0
+ console.log(log.getAverageBySubject('geometry')); // 4.5
+ console.log(log.getAverageBySubject('algebra')); // 3
+ console.log(log.getAverageBySubject('math')); // 0

@@ -46,9 +46,17 @@ class Triangle {
     try {
       return new Triangle(a, b, c);
     } catch {
-        const myError = {};
-        myError.getPerimeter = Triangle.getPerimeter();
-        myError.getArea = Triangle.getArea();
-        return myError;
+         let myError = {
+          getArea: function() {
+            throw new Error('Ошибка! Треугольник не существует');
+          },
+
+          getPerimeter: function() {
+            throw new Error('Ошибка! Треугольник не существует');
+          }
+         }
+         
+         myError.getArea();
+         myError.getPerimeter();
     }
   }

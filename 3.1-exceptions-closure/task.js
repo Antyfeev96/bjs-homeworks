@@ -1,10 +1,8 @@
 function parseCount(parsedNumber)  {
-  if (isNaN(parsedNumber) === true) {
+  if (isNaN(parsedNumber)) {
       throw new Error("Невалидное значение");
-  } else {
-    parsed = Number.parseInt(parsedNumber, 10);
-    return parsed;
   }
+   return Number.parseInt(parsedNumber, 10);
 }
 
 function validateCount(parsedCount) {
@@ -48,15 +46,14 @@ class Triangle {
     } catch {
          let myError = {
           getArea: function() {
-            throw new Error('Ошибка! Треугольник не существует');
+            return "Ошибка! Треугольник не существует";
           },
 
           getPerimeter: function() {
-            throw new Error('Ошибка! Треугольник не существует');
+            return "Ошибка! Треугольник не существует";
           }
          }
          
-         myError.getArea();
-         myError.getPerimeter();
+         return myError;
     }
   }

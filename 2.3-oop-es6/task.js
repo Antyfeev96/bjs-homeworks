@@ -147,17 +147,35 @@ class StudentLog {
 
                 if (this.marks[subject]) {
                     for (let i = 0; i < this.marks[subject].length; i++) {
-                       sum += this.marks[subject][i].length;
+                       sum += this.marks[subject][i];
                     }
                 } else {
                     return 0;
                 }
             
 
-            let average = sum / this.marks[subject].length;
-            return average;
+            this.average = sum / this.marks[subject].length;
+            return this.average;
+        }
+
+        getTotalAverage() {
+            let beginSum = 0;
+            let myLength = 0;
+            if (Object.keys(this.marks).length === 0) {
+                return 0;
+            } else {
+                for (let k in this.marks) {
+                    myLength += this.marks[k].length;
+                    for (let i = 0; i < this.marks[k].length; i++) {
+                        beginSum += this.marks[k][i];
+                     } 
+                }
+                return beginSum / myLength;
+            }
         }
     }
+        
+        
 
 
 const log = new StudentLog('Олег Никифоров');

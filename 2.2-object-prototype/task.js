@@ -13,6 +13,7 @@ String.prototype.isPalindrome = function() {
         }
     }
     return result;
+    
 }
 
 
@@ -37,13 +38,6 @@ function checkBirthday(birthday) {
     const diff = nowSeconds - userSeconds;
     let averageFourYearSeconds = (31536000000 * 3 + 31622400000) / 4;
     const age = diff / averageFourYearSeconds;
-    console.log(now);
-    console.log(nowSeconds);
-    console.log(user);
-    console.log(userSeconds);
-    console.log(diff);
-    console.log(averageFourYearSeconds);
-    console.log(age);
     let result;
     if (age >= 18) {
         result = true; 

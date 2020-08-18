@@ -6,22 +6,25 @@ function sleep(milliseconds)
   while (new Date().getTime() <= e) {}
 }
 
-function sum() {
-    sleep(100);
-    const args = Array.from(arguments);
-    let sum = 0;
-    for (item in args) {
-        sum += item;
+function memorize(a) {
+  let arr = [
+    {
+      args: [3, 4],
+      result: 7
+    },
+    {
+      args: [1, 3],
+      result: 4
     }
-    return sum;
-  }
-
-function compareArrays(arr1, arr2) {
-    for (element in arr1, arr2) {
-        if (arr1[element] === arr2[element] || (arr1.length === 0 && arr2.length === 0)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+  ]
+  const myFunc = () => {
+    return a = a ** 2;
+  };
+  return myFunc();
 }
+
+let newFunc;
+newFunc = memorize;
+newFunc(1, 2, 3, 4);
+
+//Дальше задание не сделать, потому что у меня не работает compareArrays

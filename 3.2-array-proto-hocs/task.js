@@ -6,25 +6,23 @@ function sleep(milliseconds)
   while (new Date().getTime() <= e) {}
 }
 
-function memorize(a) {
-  let arr = [
-    {
-      args: [3, 4],
-      result: 7
-    },
-    {
-      args: [1, 3],
-      result: 4
-    }
-  ]
-  const myFunc = () => {
-    return a = a ** 2;
-  };
-  return myFunc();
+function sum(...args) {
+  sleep(100);
+  return args.reduce((sum, arg) => {
+    return sum += arg;
+  }, 0);
 }
 
-let newFunc;
-newFunc = memorize;
-newFunc(1, 2, 3, 4);
+const compareArrays = (a, b) => a.length === b.length && a.every((n, i) => n === b[i]);
+
+function memorize(func) {
+ return () => func();
+}
+
+const newFunc = memorize(function (a) {
+  a = a ** 2;
+});
+newFunc();
+
 
 //Дальше задание не сделать, потому что у меня не работает compareArrays

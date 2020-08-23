@@ -27,15 +27,16 @@ function memorize(func) {
     }
   ];
 
-  function myFunc (array) {
+  function myFunc (...args) {
+    let myResult = 0;
     const aResult = arr.find(item => {
-      if (compareArrays(array, item.args)) {
-        aResult = item.result;
+      if (compareArrays(Array.from(arguments), item.args)) {
+        myResult = item.result;
       }
-      return aResult;
+      return myResult;
     })
   }
-  return myFunc;
+  return myFunc();
   // let myResult = arr.find(item => {
     // if ((item.args[0] === a) && (item.args[1] === b)) {
       // return item.result;

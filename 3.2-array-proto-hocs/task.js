@@ -34,5 +34,8 @@ function memorize(a, b) {
   })
   return myResult;
 }
+
 const newFunc = memorize(3, 4);
-newFunc;
+newFunc();
+
+

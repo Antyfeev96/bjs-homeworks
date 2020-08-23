@@ -30,7 +30,7 @@ function memorize(func) {
   function myFunc (...args) {
     let myResult = 0;
     const aResult = arr.find(item => {
-      if (compareArrays(Array.from(arguments), item.args)) {
+      if (compareArrays(Array.from(args), item.args)) {
         myResult = item.result;
       }
       return myResult;

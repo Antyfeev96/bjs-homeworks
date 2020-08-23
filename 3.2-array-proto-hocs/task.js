@@ -15,7 +15,7 @@ function sum(...args) {
 
 const compareArrays = (a, b) => a.length === b.length && a.every((n, i) => n === b[i]);
 
-function memorize(a, b) {
+function memorize(func) {
   let arr = [
     {
       args: [3, 4],
@@ -26,16 +26,25 @@ function memorize(a, b) {
       result: 4
     }
   ];
-  
-  let myResult = arr.find(item => {
-    if ((item.args[0] === a) && (item.args[1] === b)) {
-      return item.result;
-    }
-  })
-  return myResult;
+
+  function myFunc (array) {
+    const aResult = arr.find(item => {
+      if (compareArrays(array, item.args)) {
+        aResult = item.result;
+      }
+      return aResult;
+    })
+  }
+  return myFunc;
+  // let myResult = arr.find(item => {
+    // if ((item.args[0] === a) && (item.args[1] === b)) {
+      // return item.result;
+    // }
+  // })
+  // return myResult.result;
 }
 
-const newFunc = memorize(3, 4);
-newFunc();
+const newFunc = memorize;
+newFunc((a,b) => a + b);
 
 

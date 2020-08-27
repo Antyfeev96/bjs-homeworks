@@ -27,23 +27,27 @@ function memorize(func, limit) {
     }
   ];
 
-  return function myFunc (...args) {
-    const myArr = arr.find(item => compareArrays(args, item.args));
+  return function (...args) {
+    const detectedItem = arr.find(item => compareArrays(args, item.args));
 
-    if (myArr !== undefined) {
-      return myArr.result;
-    } else {
+    if (detectedItem) {
+      return detectedItem.result;
+    }
+
       let obj = {
-        args: args,
+        args,
         result: func(...args)
       };
+
       arr.push(obj);
+
       if (arr.length > limit) {
         arr.shift();
       }
-      return arr.obj.result;
-    }
+
+      return obj.result;
   }
+
 }
 
 const newFunc = memorize;

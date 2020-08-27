@@ -27,24 +27,5 @@ function getTotalDamage() {
     })
     return sumAttack;
 }
-
-function getValuestCountToSumValues(arr, sum) {
-    let mySum = 0;
-
-    mySum = arr.reduce((total, item) => {
-        if (mySum < sum) {
-            mySum = total + arr[item];        
-        }
-    }, 0);
-
-    if (mySum < sum) {
-        return arr.length;
-    } else {
-        return // количество итераций arr.reduce???
-    } 
-}
-
-getValuestCountToSumValues([1,2,3,5,2,7,3,5,2], 10);
-getValuestCountToSumValues([1,2,3,5,2,7,3,5,2], 20);
     
 

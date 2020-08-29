@@ -10,7 +10,7 @@ class AlarmClock {
 
         if (this.id === undefined) {
             throw new Error('Нет заданного id');
-        } else if (this.timerId === this.id) {
+        } else if (this.alarmCollection.find(item => item.id === this.id) !== undefined) {
             return console.error;
         } else {
             this.alarmCollection.push({
@@ -22,17 +22,10 @@ class AlarmClock {
     }
 
     removeClock(id) {
-        this.id = id;
-        const deletedId = this.alarmCollection.filter(item => item.id === this.id);
-        this.alarmCollection.map(item => {
-            if (deletedId[0] === item.id) {
-                this.alarmCollection.splice(deletedId[0], 1);
-                return true;
-            } else {
-                return false;
-            }
-        })
-
+        // const deletedId = this.alarmCollection.findIndex(item => item.id === id);
+        // this.alarmCollection.splice(deletedId, 1); 
+        this.alarmCollection.splice(this.alarmCollection.findIndex(item => item.id === id), 1);
+        // Работает как закомментированный вариант, так и тот вариант, который сейчас.
     }
 
     getCurrentFormattedTime() {

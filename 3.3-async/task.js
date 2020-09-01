@@ -73,6 +73,8 @@ class AlarmClock {
 
 }
 
+
+const testCase = () => {
 const newAlarm = new AlarmClock();
 
 newAlarm.addClock("19:46", () => console.log("Первый будильник"), 1);
@@ -89,8 +91,11 @@ newAlarm.addClock("19:48", () => {
     newAlarm.printAlarms();
 }, 3);
 
-newAlarm.addClock("19:49", () => console.log("Четвертый будильник"), 4);
+newAlarm.addClock("19:49", () => console.log("Четвертый будильник"), 1);
 
 newAlarm.printAlarms()
 
 newAlarm.start();
+
+newAlarm.stop();
+}

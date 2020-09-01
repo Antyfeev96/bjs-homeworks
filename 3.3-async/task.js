@@ -91,7 +91,7 @@ newAlarm.addClock("19:48", () => {
     newAlarm.printAlarms();
 }, 3);
 
-newAlarm.addClock("19:49", () => console.log("Четвертый будильник"), 4);
+newAlarm.addClock("19:49", () => console.log("Четвертый будильник"), 1);
 
 newAlarm.printAlarms()
 

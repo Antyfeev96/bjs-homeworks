@@ -6,7 +6,7 @@ class AlarmClock {
     addClock (time, callback, id) {
         if (id === undefined) {
             throw new Error('Нет заданного id');
-        } else if (this.alarmCollection.find(item => item.id === id) !== undefined) {
+        } else if (this.alarmCollection.find(item => item.id === id)) {
             return console.error("Будильник с таким ID уже существует");
         } else {
             this.alarmCollection.push({
@@ -18,8 +18,12 @@ class AlarmClock {
     }
 
     removeClock(id) {
-        const deletedId = this.alarmCollection.findIndex(item => item.id === id);
-        this.alarmCollection.splice(deletedId, 1); 
+        if (this.alarmCollection.find(item => item.id === id)) {
+            this.alarmCollection.splice(this.alarmCollection.findIndex(item => item.id === id), 1)
+            return true;
+        } else {
+            return false;
+        }
     }
 
     getCurrentFormattedTime() {
@@ -40,18 +44,18 @@ class AlarmClock {
     start() {
         const checkClock = (alarm) => {
             if (alarm.time === this.getCurrentFormattedTime()) {
-                return alarm.callback; 
+                alarm.callback(); 
             }  
         }
 
-        if (this.timerId === undefined) {
+        if (!this.timerId) {
             this.timerId = setInterval(() => {
                 this.alarmCollection.forEach(item => checkClock(item))
             }, 1000)}
     }
 
     stop() {
-        if (this.timerId !== undefined) {
+        if (this.timerId) {
             clearInterval(this.timerId);
             this.timerId = null;
         }
@@ -62,34 +66,34 @@ class AlarmClock {
     }
 
     clearAlarms() {
-        clearInterval(this.timerId);
+        this.stop();
         this.alarmCollection = [];
     }
 
 }
 
 
-testCase = () => {
 
+ testCase = () => {
 const newAlarm = new AlarmClock();
 
-newAlarm.addClock("12:50", () => console.log("Первый будильник"), 1);
+newAlarm.addClock("20:59", () => console.log("Первый будильник"), 1);
 
-newAlarm.addClock("12:51", () => { 
+newAlarm.addClock("21:00", () => { 
     console.log("Второй будильник");
     newAlarm.removeClock(2);
 }, 2)
 
-newAlarm.addClock("12:52", () =>  {
+newAlarm.addClock("21:01", () =>  {
     console.log("Третий будильник, пора бы проснуться");
     newAlarm.clearAlarms();
     newAlarm.printAlarms();
 }, 3);
 
-newAlarm.addClock("12:53", () => console.log("Четвертый будильник"), 1);
+newAlarm.addClock("21:01", () => console.log("Четвертый будильник"), 2);
 
 newAlarm.printAlarms()
 
 newAlarm.start();
-}
 
+ }
